@@ -1,9 +1,12 @@
-﻿# CMakeList.txt : Top-level CMake project file, do global configuration
-# and include sub-projects here.
+﻿# CMakeList.txt : CMake project for gol, include source and define
+# project specific logic here.
 #
-cmake_minimum_required (VERSION 3.8)
 
-project ("gol")
+# Add source to this project's executable.
+add_executable (gol "gol.cpp" "gol.h")
 
-# Include sub-projects.
-add_subdirectory ("gol")
+if (CMAKE_VERSION VERSION_GREATER 3.12)
+  set_property(TARGET gol PROPERTY CXX_STANDARD 20)
+endif()
+
+# TODO: Add tests and install targets if needed.
