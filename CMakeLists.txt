@@ -7,3 +7,9 @@ project ("gol")
 
 # Include sub-projects.
 add_subdirectory ("gol")
+
+function(print_var)
+	foreach(var ${ARGN})
+		message("${var} = ${${var}}")
+	endforeach()
+endfunction()
