@@ -11,3 +11,6 @@ endif()
 
 # TODO: linking dependencies
 target_link_libraries(gol PRIVATE vuda)
+
+target_include_directories(gol PUBLIC ${glfw_path}/include)
+target_link_libraries(gol PUBLIC ${glfw_path}/lib-vc2022/glfw3.lib)
