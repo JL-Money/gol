@@ -3,7 +3,7 @@
 #
 cmake_minimum_required (VERSION 3.8)
 
-project ("gol" VERSION 0.0.2.1)
+project ("gol" VERSION 0.0.2.2)
 
 function(print_var)
 	foreach(var ${ARGN})
@@ -18,18 +18,8 @@ print_var(glfw_path vulkan_sdk_path)
 
 # Include sub-projects.
 add_subdirectory ("gol")
+add_subdirectory ("ext")
 
-# Include directories for VUDA
-add_library(vuda INTERFACE)
-target_include_directories(vuda INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/ext/vuda/inc)
-
-# Include directories for Vulkan
-find_package(Vulkan REQUIRED)
-if(Vulkan_FOUND)
-  message(STATUS "Vulkan found: ${Vulkan_LIBRARY}")
-endif()
-target_include_directories(vuda INTERFACE ${Vulkan_INCLUDE_DIRS})
-target_link_libraries(vuda INTERFACE ${Vulkan_LIBRARIES}) # Without this, vk functions are inaccessible
 
 print_var(CMAKE_CURRENT_SOURCE_DIR)
 print_var(Vulkan_INCLUDE_DIRS Vulkan_LIBRARIES)
@@ -58,3 +48,7 @@ function(dump_cmake_variables)
 endfunction()
 #dump_cmake_variables()
 #execute_process(COMMAND "${CMAKE_COMMAND}" "-E" "environment")
+
+#set( file "Makefile" )
+#string( TOLOWER "${file}" file_lower )
+#if( file_lower STREQUAL "makefile" )
